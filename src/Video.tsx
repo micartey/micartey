@@ -126,7 +126,7 @@ export const Intro: React.FunctionComponent = () => {
 					translateY={-70}
 				>
 					<Flexbox style={{ color: 'white', marginLeft: '-230px' }}>
-						<H1>jairo</H1>
+						<H1>viro</H1>
 					</Flexbox>
 				</Transform>
 			</Fade>
