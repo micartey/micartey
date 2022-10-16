@@ -11,8 +11,8 @@ export const RemotionVideo: React.FC = () => {
 	return (
 		<>
 			<Composition
-				id="Playground"
-				component={Playground}
+				id="Intro"
+				component={Intro}
 				durationInFrames={500}
 				fps={30}
 				width={1000}
@@ -23,7 +23,7 @@ export const RemotionVideo: React.FC = () => {
 };
 
 
-export const Playground: React.FunctionComponent = () => {
+export const Intro: React.FunctionComponent = () => {
 	return <AbsoluteFill style={{ backgroundColor: '#141414' }}>
 		<Transform
 			idleFrames={25}
