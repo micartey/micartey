@@ -13,6 +13,7 @@ const word: React.CSSProperties = {
 };
 
 interface Props {
+    type?: 'vertical' | 'horizontal'
     startingFrame?: number
     durration?: number
     translateX?: number
@@ -28,7 +29,11 @@ export const Succession: React.FunctionComponent<Props> = (props) => {
 
 
     return <Sequence from={props.startingFrame ?? 0} durationInFrames={durration}>
-        <div style={{ transform: `translate(${props.translateX}px, ${props.translateY}px)` }}>
+        <div style={{ 
+            display: 'flex',
+            flexDirection: (props.type ?? 'horizontal') === 'vertical' ? 'column' : 'row',
+            transform: `translate(${props.translateX}px, ${props.translateY}px)` 
+        }}>
             {
                 props.children.map((child, index) => {
                     const delay = index * 5;
