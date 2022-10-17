@@ -23,6 +23,14 @@ export const RemotionVideo: React.FC = () => {
 	);
 };
 
+let getFormattedDate = (timestamp: number) => {
+    var date = new Date(timestamp);
+    var months = ['Jan','Febr','Mars','April','Maj','Juni','Juli','Aug','Sept','Okt','Nov','Dec'];
+    var year = date.getFullYear();
+    var month = months[date.getMonth()];
+    var day = date.getDate();
+    return day + ' ' + month + ', ' + year;
+};
 
 export const Intro: React.FunctionComponent = () => {
 	return <AbsoluteFill style={{ backgroundColor: '#141414' }}>
@@ -39,6 +47,15 @@ export const Intro: React.FunctionComponent = () => {
 			</Fade>
 		</Transform>
 
+		<Transform
+			idleFrames={0}
+			translateY={-120}
+			translateX={370}
+		>
+			<Flexbox style={{ color: '#f1f1f1', marginLeft: '60px' }}>
+				<H4>{getFormattedDate(Date.now())}</H4>
+			</Flexbox>
+		</Transform>
 
 		<Fade startingFrame={50} endingFrame={350}>
 			<Transform
@@ -92,7 +109,7 @@ export const Intro: React.FunctionComponent = () => {
 					idleFrames={20}
 					translateY={-70}
 				>
-					<Flexbox style={{ color: 'white', marginLeft: '220px' }}>
+					<Flexbox style={{ color: 'white', marginLeft: '200px' }}>
 						<H1>nura-vault</H1>
 					</Flexbox>
 				</Transform>
@@ -125,7 +142,7 @@ export const Intro: React.FunctionComponent = () => {
 					idleFrames={20}
 					translateY={-70}
 				>
-					<Flexbox style={{ color: 'white', marginLeft: '-230px' }}>
+					<Flexbox style={{ color: 'white', marginLeft: '-250px' }}>
 						<H1>viro</H1>
 					</Flexbox>
 				</Transform>
@@ -158,7 +175,7 @@ export const Intro: React.FunctionComponent = () => {
 					idleFrames={20}
 					translateY={-70}
 				>
-					<Flexbox style={{ color: 'white', marginLeft: '220px' }}>
+					<Flexbox style={{ color: 'white', marginLeft: '200px' }}>
 						<H1>yawen</H1>
 					</Flexbox>
 				</Transform>
