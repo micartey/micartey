@@ -35,9 +35,10 @@ let getFormattedDate = (timestamp: number) => {
 export const Intro: React.FunctionComponent = () => {
 	return <AbsoluteFill style={{ backgroundColor: '#141414' }}>
 		<Transform
+			startingFrame={25}
 			idleFrames={25}
 			translateX={-350}
-			endingFrame={350}
+			endingFrame={325}
 			scale={.1}
 		>
 			<Fade>
@@ -48,16 +49,18 @@ export const Intro: React.FunctionComponent = () => {
 		</Transform>
 
 		<Transform
-			idleFrames={0}
+			idleFrames={20}
 			translateY={-120}
-			translateX={370}
+			translateX={400}
+			endingFrame={350}
+			scale={.35}
 		>
-			<Flexbox style={{ color: '#f1f1f1', marginLeft: '60px' }}>
-				<H4>{getFormattedDate(Date.now())}</H4>
+			<Flexbox style={{ color: '#f1f1f1' }}>
+				<H1>{getFormattedDate(Date.now())}</H1>
 			</Flexbox>
 		</Transform>
 
-		<Fade startingFrame={50} endingFrame={350}>
+		<Fade startingFrame={75} endingFrame={350}>
 			<Transform
 				idleFrames={20}
 				translateY={-70}
@@ -68,7 +71,7 @@ export const Intro: React.FunctionComponent = () => {
 			</Transform>
 		</Fade>
 
-		<Fade startingFrame={90} endingFrame={350}>
+		<Fade startingFrame={110} endingFrame={350}>
 			<Transform
 				idleFrames={10}
 				translateY={100}
@@ -79,7 +82,7 @@ export const Intro: React.FunctionComponent = () => {
 			</Transform>
 		</Fade>
 
-		<Fade startingFrame={110} endingFrame={350}>
+		<Fade startingFrame={130} endingFrame={350}>
 			<Succession translateX={320} translateY={135}>
 				<FaDocker size={50} color="white" />
 				<FaReact size={50} color="white" />
