@@ -1,5 +1,10 @@
 on: workflow_dispatch
 
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: "0 0 * * *"
+
 name: Render video
 jobs:
   render:
@@ -8,14 +13,19 @@ jobs:
     steps:
       - uses: actions/checkout@main
       - uses: actions/setup-node@main
-      - run: sudo apt update
-      - run: sudo apt install ffmpeg
-      - run: npm i
-      - run: echo $WORKFLOW_INPUT > input-props.json
+      - run: |
+          sudo apt update
+          sudo apt install ffmpeg
+          sudo apt install git
+          npm install
+          echo $WORKFLOW_INPUT > input-props.json
         env:
           WORKFLOW_INPUT: ${{ toJson(github.event.inputs) }}
-      - run: npm run build -- --props="./input-props.json"
-      - uses: actions/upload-artifact@v2
-        with:
-          name: video.mp4
-          path: out/video.mp4
+      - run: |
+          npm run build -- --props="./input-props.json"
+          npm run gif
+      - run: |
+          git config --global user.name "github-actions[bot]"
+          git config --global user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add prod
+          git commit -m "build: new banner"
