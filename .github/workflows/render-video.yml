@@ -22,6 +22,7 @@ jobs:
           WORKFLOW_INPUT: ${{ toJson(github.event.inputs) }}
       - run: |
           npm run build -- --props="./input-props.json"
+          rm -rf ./prod/video2.gif
           npm run gif
       - run: |
           git config --global user.name "github-actions[bot]"
