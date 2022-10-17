@@ -15,6 +15,7 @@ const word: React.CSSProperties = {
 interface Props {
     type?: 'vertical' | 'horizontal'
     startingFrame?: number
+    endingFrame?: number
     durration?: number
     translateX?: number
     translateY?: number
@@ -25,10 +26,11 @@ export const Succession: React.FunctionComponent<Props> = (props) => {
 
     const frame = useCurrentFrame();
     const { durationInFrames, fps } = useVideoConfig();
-    const durration = props.durration ?? durationInFrames
 
+    const startFrame = props.startingFrame ?? 0
+    const durration = props.endingFrame ?? Math.max((props.durration ?? durationInFrames) + startFrame, durationInFrames)
 
-    return <Sequence from={props.startingFrame ?? 0} durationInFrames={durration}>
+    return <Sequence from={startFrame} durationInFrames={durration}>
         <div style={{ 
             display: 'flex',
             flexDirection: (props.type ?? 'horizontal') === 'vertical' ? 'column' : 'row',
@@ -40,7 +42,7 @@ export const Succession: React.FunctionComponent<Props> = (props) => {
 
                     const scale = spring({
                         fps,
-                        frame: frame - delay - (props.startingFrame ?? 0),
+                        frame: frame - delay - startFrame,
                         config: {
                             damping: 200,
                         },

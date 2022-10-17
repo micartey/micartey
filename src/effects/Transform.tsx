@@ -11,6 +11,7 @@ import {
 
 interface Props {
 	startingFrame?: number
+    endingFrame?: number
 	durration?: number
 	idleFrames?: number
 	translateX?: number
@@ -23,11 +24,13 @@ export const Transform: React.FunctionComponent<Props> = (props) => {
 
 	const frame = useCurrentFrame();
 	const { durationInFrames, fps } = useVideoConfig();
-    const durration = props.durration ?? durationInFrames
+
+    const startFrame = props.startingFrame ?? 0
+    const durration = props.endingFrame ?? Math.max((props.durration ?? durationInFrames) + startFrame, durationInFrames)
 
 	// Animate from 0 to 1 after startingFrame frames
 	const translationProgress = spring({
-		frame: frame - (props.startingFrame ?? 0) - (props.idleFrames ?? 0),
+		frame: frame - startFrame - (props.idleFrames ?? 0),
 		fps,
 		config: {
 			damping: 100,
@@ -54,7 +57,7 @@ export const Transform: React.FunctionComponent<Props> = (props) => {
 	);
 
 
-	return <Sequence from={props.startingFrame ?? 0} durationInFrames={durration}>
+	return <Sequence from={startFrame} durationInFrames={durration}>
 		<AbsoluteFill style={{ transform: `translate(${translationX}px, ${translationY}px) scale(${1 - scale})` }}>
 			{props.children}
 		</AbsoluteFill>

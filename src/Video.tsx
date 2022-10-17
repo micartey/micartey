@@ -29,7 +29,7 @@ export const Intro: React.FunctionComponent = () => {
 		<Transform
 			idleFrames={25}
 			translateX={-350}
-			durration={350}
+			endingFrame={350}
 			scale={.1}
 		>
 			<Fade>
@@ -40,7 +40,7 @@ export const Intro: React.FunctionComponent = () => {
 		</Transform>
 
 
-		<Fade startingFrame={50} durration={350}>
+		<Fade startingFrame={50} endingFrame={350}>
 			<Transform
 				idleFrames={20}
 				translateY={-70}
@@ -51,7 +51,7 @@ export const Intro: React.FunctionComponent = () => {
 			</Transform>
 		</Fade>
 
-		<Fade startingFrame={90} durration={350}>
+		<Fade startingFrame={90} endingFrame={350}>
 			<Transform
 				idleFrames={10}
 				translateY={100}
@@ -62,7 +62,7 @@ export const Intro: React.FunctionComponent = () => {
 			</Transform>
 		</Fade>
 
-		<Fade startingFrame={110} durration={350}>
+		<Fade startingFrame={110} endingFrame={350}>
 			<Succession translateX={320} translateY={135}>
 				<FaDocker size={50} color="white" />
 				<FaReact size={50} color="white" />
@@ -74,7 +74,7 @@ export const Intro: React.FunctionComponent = () => {
 			</Succession>
 		</Fade>
 
-		<Fade startingFrame={350} durration={550}>
+		<Fade startingFrame={350} endingFrame={550}>
 			<Transform
 				idleFrames={25}
 				translateX={-250}
@@ -107,7 +107,7 @@ export const Intro: React.FunctionComponent = () => {
 			</Fade>
 		</Fade>
 
-		<Fade startingFrame={550} durration={750}>
+		<Fade startingFrame={550} endingFrame={750}>
 			<Transform
 				idleFrames={25}
 				translateX={250}
@@ -140,7 +140,7 @@ export const Intro: React.FunctionComponent = () => {
 			</Fade>
 		</Fade>
 
-		<Fade startingFrame={750} durration={1000}>
+		<Fade startingFrame={750} endingFrame={1000}>
 			<Transform
 				idleFrames={25}
 				translateX={-250}

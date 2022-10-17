@@ -9,6 +9,9 @@ import {
 
 interface Props {
     startingFrame?: number
+    endingFrame?: number
+    fadeInFrames?: number
+    fadeOutFrames?: number
     durration?: number
     children: React.ReactNode
 }
@@ -19,11 +22,11 @@ export const Fade: React.FunctionComponent<Props> = (props) => {
     const { durationInFrames } = useVideoConfig();
 
     const startFrame = props.startingFrame ?? 0
-    const durration = props.durration ?? durationInFrames
+    const durration = props.endingFrame ?? Math.max((props.durration ?? durationInFrames) + startFrame, durationInFrames)
 
     const fadeIn = interpolate(
         frame,
-        [startFrame, startFrame + 10],
+        [startFrame, startFrame + (props.fadeInFrames ?? 10)],
         [0, 1],
         {
             extrapolateLeft: 'clamp',
@@ -33,7 +36,7 @@ export const Fade: React.FunctionComponent<Props> = (props) => {
 
     const fadeOut = interpolate(
         frame,
-        [durration - 25, durration - 15],
+        [durration - (props.fadeOutFrames ?? 10), durration],
         [1, 0],
         {
             extrapolateLeft: 'clamp',
