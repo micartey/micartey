@@ -8,7 +8,6 @@ import { FaJava, FaDocker, FaReact, FaNodeJs, FaGithub } from 'react-icons/fa';
 import { IoGitCommit } from 'react-icons/io5';
 import { SiSpring, SiMongodb } from 'react-icons/si';
 import { GoIssueClosed } from 'react-icons/go';
-import { MdPublish } from 'react-icons/md';
 import { P } from './components/Text';
 import { getActivityByUsername } from './endpoints/GitHubAPI';
 import { GitActivity } from './entities';
@@ -190,7 +189,30 @@ export const Intro: React.FunctionComponent = () => {
 			<Flexbox style={{ color: 'white', alignItems: 'normal' }}>
 				<Timeline>
 					{
-						activities?.map(activity => {
+						activities?.filter(activity => activity.payload.commits).map(activity => {
+							return activity.payload.commits!!.map(commit => {
+								return <TimelineItem>
+									<TimelineOppositeContent color="#666666">
+										{getFormattedDate(Date.parse(activity.created_at))}
+									</TimelineOppositeContent>
+									<TimelineSeparator>
+										{
+											{
+												"PushEvent": <IoGitCommit size={35} />,
+											}[activity.type] || <TimelineDot />
+										}
+										<TimelineConnector />
+									</TimelineSeparator>
+									<TimelineContent>
+										{commit.message} <br />
+										<div style={{ color: '#d0d0d0' }}>{activity.repo.name}</div>
+									</TimelineContent>
+								</TimelineItem>
+							})
+						})
+					}
+					{
+						activities?.filter(activity => activity.payload.issue).map(activity => {
 							return <TimelineItem>
 								<TimelineOppositeContent color="#666666">
 									{getFormattedDate(Date.parse(activity.created_at))}
@@ -198,15 +220,16 @@ export const Intro: React.FunctionComponent = () => {
 								<TimelineSeparator>
 									{
 										{
-											"PushEvent": <IoGitCommit size={30} />,
-											"IssuesEvent": <GoIssueClosed size={30} />,
-											"IssueCommentEvent": <GoIssueClosed size={30} />,
-											"ReleaseEvent": <MdPublish size={30} />,
+											"IssuesEvent": <GoIssueClosed size={35} />,
+											"IssueCommentEvent": <GoIssueClosed size={35} />,
 										}[activity.type] || <TimelineDot />
 									}
 									<TimelineConnector />
 								</TimelineSeparator>
-								<TimelineContent>{activity.repo.name}</TimelineContent>
+								<TimelineContent>
+									{activity.payload.issue?.title} <br />
+									<div style={{ color: '#d0d0d0' }}>{activity.repo.name}</div>
+								</TimelineContent>
 							</TimelineItem>
 						})
 					}

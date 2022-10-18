@@ -1,18 +1,27 @@
+import { GitUser } from ".";
+
 export interface GitActivity {
     type: string
     repo: Repo
     created_at: string
-    paylaod: Payload
+    payload: Payload
 }
 
 interface Payload {
-    commits: Commit[]
+    commits?: Commit[]
+    issue?: Issue
 }
 
 interface Commit {
     author: Author
     message: string
     url: string
+}
+
+interface Issue {
+    url: string
+    title: string
+    user: GitUser
 }
 
 interface Author {

@@ -4,5 +4,4 @@ export interface GitUser {
     avatar_url: string,
     repo_url: string,
     followers: string,
-    created_at: string
 }
