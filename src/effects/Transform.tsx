@@ -12,6 +12,7 @@ import {
 interface Props {
 	startingFrame?: number
     endingFrame?: number
+	animationDurration?: number
 	durration?: number
 	idleFrames?: number
 	translateX?: number
@@ -35,6 +36,7 @@ export const Transform: React.FunctionComponent<Props> = (props) => {
 		config: {
 			damping: 100,
 		},
+		durationInFrames: props.animationDurration
 	});
 
 	// Move the child x pixels once the transition starts

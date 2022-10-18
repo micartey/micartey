@@ -16,6 +16,11 @@
     "@types/web": "^0.0.61"
   },
   "dependencies": {
+    "@emotion/react": "^11.10.4",
+    "@emotion/styled": "^11.10.4",
+    "@mui/lab": "^5.0.0-alpha.104",
+    "@mui/material": "^5.10.10",
+    "@mui/styled-engine-sc": "^5.10.6",
     "@remotion/cli": "3.2.31",
     "@remotion/eslint-config": "3.2.31",
     "@types/styled-components": "^5.1.26",
