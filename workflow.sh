@@ -7,7 +7,7 @@ pull() {
 }
 
 rebuild() {
-    npm run build -- --props="./input-props.json"
+    npm run build
     rm -rf ./prod/video2.gif
     npm run gif
 }
