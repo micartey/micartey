@@ -10,6 +10,7 @@ import { SiSpring, SiMongodb } from 'react-icons/si';
 import { GoIssueClosed } from 'react-icons/go';
 import { P } from './components/Text';
 import { getActivityByUsername } from './endpoints/GitHubAPI';
+import ReactFrappeChart from "react-frappe-charts";
 import { GitActivity } from './entities';
 import Timeline from '@mui/lab/Timeline';
 import TimelineItem from '@mui/lab/TimelineItem';
@@ -26,7 +27,7 @@ export const RemotionVideo: React.FC = () => {
 			<Composition
 				id="Intro"
 				component={Intro}
-				durationInFrames={1000}
+				durationInFrames={800}
 				fps={30}
 				width={1000}
 				height={300}
@@ -37,7 +38,7 @@ export const RemotionVideo: React.FC = () => {
 
 let getFormattedDate = (timestamp: number) => {
 	var date = new Date(timestamp);
-	var months = ['Jan', 'Febr', 'Mars', 'April', 'Maj', 'Juni', 'Juli', 'Aug', 'Sept', 'Okt', 'Nov', 'Dec'];
+	var months = ['Jan', 'Febr', 'March', 'April', 'Mai', 'Juni', 'Juli', 'Aug', 'Sept', 'Okt', 'Nov', 'Dec'];
 	var year = date.getFullYear();
 	var month = months[date.getMonth()];
 	var day = date.getDate();
@@ -117,71 +118,22 @@ export const Intro: React.FunctionComponent = () => {
 
 		<Fade startingFrame={350} endingFrame={550}>
 			<Transform
-				idleFrames={25}
-				translateX={-250}
-				scale={.1}
+				scale={.2}
+				translateY={80}
 			>
-				<Fade>
-					<Flexbox>
-						<img style={{ border: '2px double white', borderRadius: '15px' }} height="80%" src="https://i.imgur.com/WqGBNWx.png" />
-					</Flexbox>
-				</Fade>
+				<ReactFrappeChart
+					type="percentage"
+					colors={["#21ba45"]}
+					height={150}
+					data={{
+						labels: ["Java", "TypeScript", "C#", "Dockerfile", "C++", "Rust"],
+						datasets: [{ values: [53, 32, 8, 5, 1, 1] }],
+					}}
+				/>
 			</Transform>
-
-			<Fade startingFrame={50}>
-				<Transform
-					idleFrames={20}
-					translateY={-70}
-				>
-					<Flexbox style={{ color: 'white', marginLeft: '200px' }}>
-						<H1>nura-vault</H1>
-					</Flexbox>
-				</Transform>
-			</Fade>
-
-			<Fade startingFrame={70}>
-				<Succession translateX={520} translateY={135} type={'vertical'}>
-					<P>Your free and open source password manager</P>
-					<P>  Store your passwords and access them</P>
-					<P>           anywere and anytime</P>
-				</Succession>
-			</Fade>
 		</Fade>
 
-		<Fade startingFrame={550} endingFrame={750}>
-			<Transform
-				idleFrames={25}
-				translateX={250}
-				scale={.1}
-			>
-				<Fade>
-					<Flexbox>
-						<img style={{ border: '2px double white', borderRadius: '15px' }} height="80%" src="https://i.imgur.com/vycmdEq.gif" />
-					</Flexbox>
-				</Fade>
-			</Transform>
-
-			<Fade startingFrame={50}>
-				<Transform
-					idleFrames={20}
-					translateY={-70}
-				>
-					<Flexbox style={{ color: 'white', marginLeft: '-250px' }}>
-						<H1>viro</H1>
-					</Flexbox>
-				</Transform>
-			</Fade>
-
-			<Fade startingFrame={70}>
-				<Succession translateX={150} translateY={135} type={'vertical'}>
-					<P>A java doodle application</P>
-					<P>made for screen sharing</P>
-					<P>   and highlighting</P>
-				</Succession>
-			</Fade>
-		</Fade>
-
-		<Fade startingFrame={750} endingFrame={1000} fadeInFrames={30}>
+		<Fade startingFrame={550} endingFrame={800} fadeInFrames={30}>
 			<Flexbox style={{ color: 'white', marginLeft: '-330px', marginTop: '20px' }}>
 				<img style={{ border: '2px double white', borderRadius: '50%' }} height="100px" width="100px" src="https://github.com/micartey.png" />
 				<H2 style={{ marginLeft: '20px' }}>Latest Activity</H2>
