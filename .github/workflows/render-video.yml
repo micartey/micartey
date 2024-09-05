@@ -16,6 +16,20 @@ jobs:
           sudo apt update
           sudo apt install ffmpeg
           sudo apt install git
+
+          sudo apt install -y \
+            libnss3 \
+            libdbus-1-3 \
+            libatk1.0-0 \
+            libasound2 \
+            libxrandr2 \
+            libxkbcommon-dev \
+            libxfixes3 \
+            libxcomposite1 \
+            libxdamage1 \
+            libgbm-dev \
+            libatk-bridge2.0-0
+
           npm install
           echo $WORKFLOW_INPUT > input-props.json
         env:
