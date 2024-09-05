@@ -4,7 +4,7 @@ import { H1, H2, H4 } from './components/Headers';
 import { Fade } from './effects/Fade';
 import { Succession } from './effects/Succession';
 import { Transform } from './effects/Transform';
-import { FaJava, FaDocker, FaReact, FaNodeJs, FaGithub } from 'react-icons/fa';
+import { FaJava, FaDocker, FaReact, FaNodeJs, FaGithub, FaAngular, FaAws, FaStripe } from 'react-icons/fa';
 import { IoGitCommit } from 'react-icons/io5';
 import { SiSpring, SiMongodb } from 'react-icons/si';
 import { GoIssueClosed } from 'react-icons/go';
@@ -57,6 +57,18 @@ export const Intro: React.FunctionComponent = () => {
 
 	return <AbsoluteFill style={{ backgroundColor: '#141414' }}>
 		<Transform
+			idleFrames={20}
+			translateY={-120}
+			translateX={400}
+			endingFrame={350}
+			scale={.35}
+		>
+			<Flexbox style={{ color: '#f1f1f1' }}>
+				<H1>{getFormattedDate(Date.now())}</H1>
+			</Flexbox>
+		</Transform>
+
+		<Transform
 			startingFrame={25}
 			idleFrames={25}
 			translateX={-350}
@@ -68,18 +80,6 @@ export const Intro: React.FunctionComponent = () => {
 					<img style={{ border: '2px double white', borderRadius: '50%' }} height="250px" width="250px" src="https://github.com/micartey.png" />
 				</Flexbox>
 			</Fade>
-		</Transform>
-
-		<Transform
-			idleFrames={20}
-			translateY={-120}
-			translateX={400}
-			endingFrame={350}
-			scale={.35}
-		>
-			<Flexbox style={{ color: '#f1f1f1' }}>
-				<H1>{getFormattedDate(Date.now())}</H1>
-			</Flexbox>
 		</Transform>
 
 		<Fade startingFrame={75} endingFrame={350}>
@@ -106,17 +106,20 @@ export const Intro: React.FunctionComponent = () => {
 
 		<Fade startingFrame={130} endingFrame={350}>
 			<Succession translateX={320} translateY={135}>
-				<FaDocker size={50} color="white" />
-				<FaReact size={50} color="white" />
-				<FaNodeJs size={50} color="white" />
-				<SiSpring size={50} color="white" />
 				<FaJava size={50} color="white" />
-				<SiMongodb size={50} color="white" />
-				<FaGithub size={50} color="white" />
+				<SiSpring size={50} color="white" />
+				<FaAngular size={50} color="white" />
+				{/* <FaNodeJs size={50} color="white" /> */}
+				<FaDocker size={50} color="white" />
+				<FaAws size={50} color="white" />
+				{/* <FaReact size={50} color="white" /> */}
+				{/* <SiMongodb size={50} color="white" /> */}
+				{/* <FaGithub size={50} color="white" /> */}
+				<FaStripe size={50} color="white" />
 			</Succession>
 		</Fade>
 
-		<Fade startingFrame={350} endingFrame={550}>
+		{/* <Fade startingFrame={350} endingFrame={550}>
 			<Transform
 				scale={.2}
 				translateY={80}
@@ -131,13 +134,14 @@ export const Intro: React.FunctionComponent = () => {
 					}}
 				/>
 			</Transform>
-		</Fade>
+		</Fade> */}
 
-		<Fade startingFrame={550} endingFrame={800} fadeInFrames={30}>
+		<Fade startingFrame={350} endingFrame={800} fadeInFrames={30}>
 			<Flexbox style={{ color: 'white', marginLeft: '-330px', marginTop: '20px' }}>
-				<img style={{ border: '2px double white', borderRadius: '50%' }} height="100px" width="100px" src="https://github.com/micartey.png" />
+				<img style={{ border: '2px double white', borderRadius: '50%' }} height="70px" width="70px" src="https://github.com/micartey.png" />
 				<H2 style={{ marginLeft: '20px' }}>Latest Activity</H2>
 			</Flexbox>
+
 			<Flexbox style={{ color: 'white', alignItems: 'normal' }}>
 				<Timeline>
 					{

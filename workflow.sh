@@ -8,7 +8,7 @@ pull() {
 
 rebuild() {
     npm run build
-    rm -rf ./prod/video2.gif
+    rm -rf ./prod/video.gif
     npm run gif
 }
 
