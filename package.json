@@ -28,7 +28,7 @@
   },
   "scripts": {
     "dev": "remotion studio",
-    "build": "remotion render src/index.tsx out.mp4",
+    "build": "remotion render Intro out.mp4",
     "gif": "ffmpeg -i out.mp4 -vf fps=10 video.gif",
     "upgrade": "remotion upgrade"
   }
