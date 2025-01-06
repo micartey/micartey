@@ -29,7 +29,7 @@
   "scripts": {
     "dev": "remotion studio",
     "build": "remotion render Intro out.mp4",
-    "gif": "ffmpeg -i out.mp4 -vf fps=10 video.gif",
+    "gif": "ffmpeg -i out.mp4 -vf fps=10 -f video.gif",
     "upgrade": "remotion upgrade"
   }
 }
