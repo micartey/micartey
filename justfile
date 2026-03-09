@@ -1,3 +1,10 @@
+default:
+    @just --list
+
+render:
+    docker build -t micartey .
+    docker run --rm -v "$(pwd):/output" micartey
+
 # Squash all history into a single commit, keeping only the latest state
 squash-history:
     rm -rf .git
