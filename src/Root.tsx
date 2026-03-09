@@ -146,11 +146,17 @@ export const Intro: React.FC = () => {
         <Flexbox style={{ color: "white", alignItems: "normal" }}>
           <Timeline>
             {activities
-              ?.filter((activity) => activity.payload.commits)
+              ?.filter(
+                (activity) =>
+                  activity.payload.commits || activity.payload.issue,
+              )
+              .sort(
+                (a, b) => Date.parse(b.created_at) - Date.parse(a.created_at),
+              )
               .map((activity) => {
-                return activity.payload.commits?.map((commit) => {
+                if (activity.payload.commits) {
                   return (
-                    <TimelineItem>
+                    <TimelineItem key={`${activity.created_at}-commits`}>
                       <TimelineOppositeContent color="#666666">
                         {getFormattedDate(Date.parse(activity.created_at))}
                       </TimelineOppositeContent>
@@ -161,38 +167,40 @@ export const Intro: React.FC = () => {
                         <TimelineConnector />
                       </TimelineSeparator>
                       <TimelineContent>
-                        {commit.message} <br />
+                        {activity.payload.commits.length === 1
+                          ? activity.payload.commits[0].message
+                          : `${activity.payload.commits.length} commits`}
+                        <br />
                         <div style={{ color: "#d0d0d0" }}>
                           {activity.repo.name}
                         </div>
                       </TimelineContent>
                     </TimelineItem>
                   );
-                });
-              })}
-            {activities
-              ?.filter((activity) => activity.payload.issue)
-              .map((activity) => {
-                return (
-                  <TimelineItem>
-                    <TimelineOppositeContent color="#666666">
-                      {getFormattedDate(Date.parse(activity.created_at))}
-                    </TimelineOppositeContent>
-                    <TimelineSeparator>
-                      {{
-                        IssuesEvent: <GoIssueClosed size={35} />,
-                        IssueCommentEvent: <GoIssueClosed size={35} />,
-                      }[activity.type] || <TimelineDot />}
-                      <TimelineConnector />
-                    </TimelineSeparator>
-                    <TimelineContent>
-                      {activity.payload.issue?.title} <br />
-                      <div style={{ color: "#d0d0d0" }}>
-                        {activity.repo.name}
-                      </div>
-                    </TimelineContent>
-                  </TimelineItem>
-                );
+                }
+                if (activity.payload.issue) {
+                  return (
+                    <TimelineItem key={`${activity.created_at}-issue`}>
+                      <TimelineOppositeContent color="#666666">
+                        {getFormattedDate(Date.parse(activity.created_at))}
+                      </TimelineOppositeContent>
+                      <TimelineSeparator>
+                        {{
+                          IssuesEvent: <GoIssueClosed size={35} />,
+                          IssueCommentEvent: <GoIssueClosed size={35} />,
+                        }[activity.type] || <TimelineDot />}
+                        <TimelineConnector />
+                      </TimelineSeparator>
+                      <TimelineContent>
+                        {activity.payload.issue?.title} <br />
+                        <div style={{ color: "#d0d0d0" }}>
+                          {activity.repo.name}
+                        </div>
+                      </TimelineContent>
+                    </TimelineItem>
+                  );
+                }
+                return null;
               })}
           </Timeline>
         </Flexbox>
