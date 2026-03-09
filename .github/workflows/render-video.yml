@@ -1,0 +1,25 @@
+name: Render video
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: "0 0 * * *"
+
+jobs:
+  render:
+    name: Render video
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@main
+      - uses: actions/setup-node@main
+      - run: npm install
+      - run: npm run build
+      - run: sudo apt update
+      - run: sudo apt install -y ffmpeg
+      - run: npm run gif
+      - run: |
+          git config --global user.name "github-actions[bot]"
+          git config --global user.email "github-actions[bot]@users.noreply.github.com"
+          git add *.gif
+          git commit -m "build: new banner"
+          git push

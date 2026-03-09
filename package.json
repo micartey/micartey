@@ -1,0 +1,35 @@
+{
+  "name": "micartey",
+  "version": "1.0.0",
+  "description": "GitHub Profile README Generator",
+  "repository": {},
+  "license": "MIT",
+  "private": true,
+  "dependencies": {
+    "@emotion/react": "^11.14.0",
+    "@emotion/styled": "^11.14.0",
+    "@mui/lab": "^6.0.0-beta.22",
+    "@mui/material": "^6.3.1",
+    "@mui/styled-engine-sc": "^6.3.1",
+    "@remotion/cli": "4.0.244",
+    "@remotion/zod-types": "4.0.244",
+    "react": "19.0.0",
+    "react-dom": "19.0.0",
+    "react-icons": "^5.4.0",
+    "remotion": "4.0.244",
+    "styled-components": "^6.1.14",
+    "zod": "3.22.3"
+  },
+  "devDependencies": {
+    "@types/react": "19.0.0",
+    "@types/web": "0.0.166",
+    "prettier": "3.3.3",
+    "typescript": "5.5.4"
+  },
+  "scripts": {
+    "dev": "remotion studio",
+    "build": "remotion render Intro out.mp4",
+    "gif": "ffmpeg -y -i out.mp4 -vf fps=10 video.gif",
+    "upgrade": "remotion upgrade"
+  }
+}
