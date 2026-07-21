@@ -1,7 +1,6 @@
 <div align="center">
     <img src="video.gif" alt="Demo Video" />
     <br />
-    <br />
     <strong>
         <a href="https://n8n.micartey.dev/form/82362fdc-fca9-4b1f-946d-17265faaadc3"><code>Contact</code></a>
         &nbsp; &middot; &nbsp;
